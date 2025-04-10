@@ -96,6 +96,10 @@ inputs:
     description: 'Whether or not the action should exit successfully if some requested secrets were not found.'
     required: false
     default: 'false'
+  maskSecrets:
+    description: 'When set to false, disables masking of secrets. Dangerous unless this action is wrapped by one that handles masking.'
+    required: false
+    default: 'true'
 runs:
   using: 'node20'
   main: 'dist/index.js'
