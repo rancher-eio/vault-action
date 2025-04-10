@@ -18557,6 +18557,8 @@ async function exportSecrets() {
     const outputToken = (core.getInput('outputToken', { required: false }) || 'false').toLowerCase() != 'false';
     const exportToken = (core.getInput('exportToken', { required: false }) || 'false').toLowerCase() != 'false';
 
+    const maskSecrets = (core.getInput('maskSecrets', { required: false }) || 'true').toLowerCase() != 'false';
+
     const secretsInput = core.getInput('secrets', { required: false });
     const secretRequests = parseSecretsInput(secretsInput);
 
@@ -18658,7 +18660,9 @@ async function exportSecrets() {
 
         for (const line of value.replace(/\r/g, '').split('\n')) {
             if (line.length > 0) {
+              if (maskSecrets == true) {
                 core.setSecret(line);
+              }
             }
         }
         if (exportEnv) {
@@ -18704,9 +18708,9 @@ function parsePkiInput(pkiInput) {
         let outputVarName = path.split('/').pop();
         let envVarName = normalizeOutputKey(outputVarName);
 
-        return { 
-            path, 
-            envVarName, 
+        return {
+            path,
+            envVarName,
             outputVarName,
             parameters: JSON.parse(parameters),
         };
