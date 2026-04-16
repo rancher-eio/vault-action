@@ -8,7 +8,7 @@ on:
     types: [created]
 jobs:
   sync:
-    uses: hashicorp/vault-workflows-common/.github/workflows/jira.yaml@main
+    uses: hashicorp/vault-workflows-common/.github/workflows/jira.yaml@623b7b83929fa8b7779ffc56e6d2ad40c415f6d1 # main
     secrets:
       JIRA_SYNC_BASE_URL: ${{ secrets.JIRA_SYNC_BASE_URL }}
       JIRA_SYNC_USER_EMAIL: ${{ secrets.JIRA_SYNC_USER_EMAIL }}
